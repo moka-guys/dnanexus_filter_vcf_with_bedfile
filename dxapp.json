@@ -1,0 +1,48 @@
+{
+  "name": "filter_vcf_with_bedfile",
+  "title": "Filter a vcf file using a BED file",
+  "summary": "Creates a vcf file containing a subset of the variants within a vcf that fall within the regions in a given BED file.",
+  "tags": [
+    "Create Truthset"
+  ],
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "input_vcf",
+      "label": "input_vcf",
+      "help": "The vcf file to be filtered",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    },
+    {
+      "name": "bedfile",
+      "label": "bedfile to filter  vcf",
+      "help": "The bedfile you wish to use to filter the vcf file with",
+      "class": "file",
+      "patterns": ["*.bed"]
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "filtered_vcf",
+      "label": "filtered_vcf",
+      "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "vcftools"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem2_hdd2_x2"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  }
+}
