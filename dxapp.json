@@ -1,23 +1,23 @@
 {
-  "name": "filter_na12878vcf_with_bedfile",
-  "title": "Filter the NA12878 vcf file using BED file",
-  "summary": "Creates a vcf file containing a subset of the NA12878 variants that fall within the regions in a given BED file.",
+  "name": "filter_vcf_with_bedfile",
+  "title": "Filter a vcf file using a BED file",
+  "summary": "Creates a vcf file containing a subset of the variants within a vcf that fall within the regions in a given BED file.",
   "tags": [
     "Create Truthset"
   ],
   "dxapi": "1.0.0",
   "inputSpec": [
     {
-      "name": "NA12878_vcf",
-      "label": "NA12878_vcf",
-      "help": "The NA12878 vcf file to be filtered",
+      "name": "input_vcf",
+      "label": "input_vcf",
+      "help": "The vcf file to be filtered",
       "class": "file",
       "patterns": ["*.vcf"]
     },
     {
       "name": "bedfile",
-      "label": "bedfile to filter NA12878 vcf",
-      "help": "The bedfile you wish to use to filter the NA12878 vcf file with",
+      "label": "bedfile to filter  vcf",
+      "help": "The bedfile you wish to use to filter the vcf file with",
       "class": "file",
       "patterns": ["*.bed"]
     }
@@ -26,7 +26,7 @@
     {
       "name": "filtered_vcf",
       "label": "filtered_vcf",
-      "help": "A vcf file containing variants from NA12878 that fall within the regions given in the bed file.",
+      "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
       "class": "file",
       "patterns": ["*.vcf"]
     }

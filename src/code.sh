@@ -5,12 +5,11 @@
 #set -e -x
 
 # Fetch input files
-dx download "$NA12878_vcf" -o NA12878_vcf
+dx download "$input_vcf" -o input_vcf
 dx download "$bedfile" -o bedfile.bed
 
-
 # Run vcftools
-vcftools --bed  bedfile.bed --vcf NA12878_vcf  --out $bedfile_prefix --recode --recode-INFO-all
+vcftools --bed  bedfile.bed --vcf input_vcf  --out $bedfile_prefix --recode --recode-INFO-all
 
 # upload filtered vcf and capture the file id
 file_id=$(dx upload $bedfile_prefix.recode.vcf --brief)
