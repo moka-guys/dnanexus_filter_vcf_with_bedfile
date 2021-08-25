@@ -34,15 +34,17 @@
   "runSpec": {
     "execDepends": [
       {
-        "name": "vcftools"
+        "name": "bcftools"
       }
     ],
     "systemRequirements": {
       "main": {
-        "instanceType": "mem2_hdd2_x2"
+        "instanceType": "mem1_ssd1_x2"
       }
     },
     "file": "src/code.sh",
+    "distribution" : "Ubuntu",
+    "release" : "20.04",
     "interpreter": "bash"
   }
 }
