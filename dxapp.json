@@ -44,6 +44,7 @@
     },
     "file": "src/code.sh",
     "distribution" : "Ubuntu",
+    "version": "0",
     "release" : "20.04",
     "interpreter": "bash"
   }
