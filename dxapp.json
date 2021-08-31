@@ -12,7 +12,7 @@
       "label": "input_vcf",
       "help": "The vcf file to be filtered",
       "class": "file",
-      "patterns": ["*.vcf.gz"],
+      "patterns": ["*.vcf.gz"]
     },
     {
       "name": "bedfile",
