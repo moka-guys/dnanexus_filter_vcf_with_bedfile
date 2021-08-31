@@ -12,7 +12,7 @@
       "label": "input_vcf",
       "help": "The vcf file to be filtered",
       "class": "file",
-      "patterns": ["*.vcf"]
+      "patterns": ["*.vcf.gz"],
     },
     {
       "name": "bedfile",
@@ -28,7 +28,7 @@
       "label": "filtered_vcf",
       "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
       "class": "file",
-      "patterns": ["*.vcf.gz"]
+      "patterns": ["*.vcf"]
     }
   ],
   "runSpec": {
