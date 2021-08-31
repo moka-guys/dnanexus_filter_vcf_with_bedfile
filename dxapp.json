@@ -15,6 +15,13 @@
       "patterns": ["*.vcf.gz"]
     },
     {
+      "name": "input_vcf_index",
+      "label": "input_vcf_index",
+      "help": "The index file of the vcf file to be filtered",
+      "class": "file",
+      "patterns": ["*.vcf.gz.tbi"]
+    },
+    {
       "name": "bedfile",
       "label": "bedfile to filter  vcf",
       "help": "The bedfile you wish to use to filter the vcf file with",
