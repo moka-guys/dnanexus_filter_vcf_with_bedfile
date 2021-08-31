@@ -10,10 +10,10 @@ dx download "$bedfile" -o bedfile.bed
 dx download "$input_vcf_index" -o input_vcf_index
 
 # Run vcftools
-bcftools view input_vcf##idx##input_vcf_index -R bedfile.bed -O z -o $bedfile_prefix.vcf
+bcftools view input_vcf##idx##input_vcf_index -R bedfile.bed -O z -o $input_vcf_prefix.vcf.gz
 
 # upload filtered vcf and capture the file id
-file_id=$(dx upload $input_vcf_prefix.vcf --brief)
+file_id=$(dx upload $input_vcf_prefix.vcf.gz --brief)
 
 #assign to filtered vcf output in JSON
 dx-jobutil-add-output "filtered_vcf"  "$file_id"
