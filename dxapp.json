@@ -1,10 +1,13 @@
 {
-  "name": "filter_vcf_with_bedfile",
-  "title": "Filter a vcf file using a BED file",
-  "summary": "Creates a vcf file containing a subset of the variants within a vcf that fall within the regions in a given BED file.",
+  "name": "filter_vcf_with_bedfile_v1.0",
+  "title": "filter_vcf_with_bedfile_v1.0",
+  "summary": "v1.0 - Filters a VCF file using a BED file - keeps variants that fall within the bed file regions.",
   "tags": [
-    "Create Truthset"
+    "variants", "bed file", "filtering"
   ],
+  "properties": {
+    "github release": "v1.0"
+  },
   "dxapi": "1.0.0",
   "inputSpec": [
     {
@@ -39,11 +42,6 @@
     }
   ],
   "runSpec": {
-    "execDepends": [
-      {
-        "name": "bcftools"
-      }
-    ],
     "systemRequirements": {
       "main": {
         "instanceType": "mem1_ssd1_x2"
@@ -54,5 +52,10 @@
     "version": "0",
     "release" : "20.04",
     "interpreter": "bash"
+  },
+  "ignoreReuse": false,
+  "regionalOptions": {
+    "aws:us-east-1": {
+    }
   }
 }
