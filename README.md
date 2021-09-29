@@ -41,7 +41,7 @@ the 001_ToolsReferenceData project. The app loads the docker image from the .tar
 ```
 sudo docker build - < Dockerfile 
 sudo docker tag <image_id> samtools/bcftools:1.13
-**sudo docker save samtools/bcftools:1.13 | gzip > bcftools_v1.13.tar.gz**
+sudo docker save samtools/bcftools:1.13 | gzip > bcftools_v1.13.tar.gz
 ```
 
 ## This app was made by Viapath Genome Informatics
