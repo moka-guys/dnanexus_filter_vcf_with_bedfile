@@ -33,7 +33,7 @@ region are returned.
 3. The bcftools output .vcf.gz file is uploaded to DNAnexus. 
 
 ## What are the limitations of this app?
-* The project which MultiQC is run on must be shared with the user mokaguys
+* The project which the app is run on must be shared with the user mokaguys
 
 ## How was the .tar.gz file created?
 The bcftools docker image was created using the Dockerfile, tagged, and saved as a bcftools.tar.gz file, saved in 
