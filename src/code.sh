@@ -1,20 +1,35 @@
 #!/bin/bash
 
-# The following line causes bash to exit at any point if there is any error
-# and to output each line as it is executed -- useful for debugging
-#set -e -x
+main () {
+  # The following line causes bash to exit at any point if there is any error
+  # and to output each line as it is executed -- useful for debugging
+  set -e -x -o pipefail
 
-# Fetch input files
-dx download "$input_vcf" -o input_vcf
-dx download "$bedfile" -o bedfile.bed
+  # Fetch input files
+  dx-download-all-inputs --parallel
+  # Download docker image, get tag and print
+  DOCKER_FILE_ID=project-ByfFPz00jy1fk6PjpZ95F27J:file-G55XqF00jy1QkJ174ZzZfzV5
+  dx download ${DOCKER_FILE_ID}
 
-# Run vcftools
-vcftools --bed  bedfile.bed --vcf input_vcf  --out $bedfile_prefix --recode --recode-INFO-all
+  DOCKER_IMAGE_FILE=$(dx describe ${DOCKER_FILE_ID} --name)
+  DOCKER_IMAGE_NAME=$(tar xfO "${DOCKER_IMAGE_FILE}" manifest.json | sed -E 's/.*"RepoTags":\["?([^"]*)"?.*/\1/')
 
-# upload filtered vcf and capture the file id
-file_id=$(dx upload $bedfile_prefix.recode.vcf --brief)
+  # Create output directory
+  out_dir=/home/dnanexus/out/filtered_vcf/output && mkdir -p ${out_dir}
 
-#assign to filtered vcf output in JSON
-dx-jobutil-add-output "filtered_vcf"  "$file_id"
+  # Call bcftools view (Bcftools v1.13). Docker image is a DNAnexus asset in 001_ToolsReferenceData in compressed
+  # tarball format.
+  # The docker -v flag mounts a local directory to the docker environment in the format: -v local_dir:docker_dir.
+  # -R = supplies file containing regions to restrict the input file.  a file containing regions to restrict the input
+           #file on. Returns all positions overlapping the regions specified in the bed file. Therefore indels that
+           # cover both inside and outside a region are returned.
+  # -O z = output type compressed vcf file
+  docker load < /home/dnanexus/"${DOCKER_IMAGE_FILE}"
+  echo "Using docker image ${DOCKER_IMAGE_NAME}"
+  docker run -v /home/dnanexus:/home/dnanexus "${DOCKER_IMAGE_NAME}" view "$vcf_file_path"##idx##"$vcf_index_path" \
+      -R "$bedfile_path" -O z -o ${out_dir}/"$vcf_file_prefix".vcf.gz
 
-
+  # Create output directory, move output file into directory, and upload outputs
+  # dx-upload-all-outputs uploads contents of the subdirectories on the path $HOME/out/
+  dx-upload-all-outputs
+  }
