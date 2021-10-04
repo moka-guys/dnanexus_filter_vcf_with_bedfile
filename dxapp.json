@@ -1,7 +1,7 @@
 {
   "name": "filter_vcf_with_bedfile_v1.0",
   "title": "filter_vcf_with_bedfile_v1.0",
-  "summary": "v1.0 - Filters a VCF file using a BED file - keeps variants that fall within the bed file regions.",
+  "summary": "v1.0 - Filters a VCF file using a BED file - keeps variants overlapping/within the region of interest. Runs bcftools v1.13",
   "tags": [
     "variants", "bed file", "filtering"
   ],
@@ -11,22 +11,22 @@
   "dxapi": "1.0.0",
   "inputSpec": [
     {
-      "name": "input_vcf",
-      "label": "input_vcf",
+      "name": "vcf_file",
+      "label": "Input vcf file",
       "help": "The vcf file to be filtered",
       "class": "file",
       "patterns": ["*.vcf.gz"]
     },
     {
-      "name": "input_vcf_index",
-      "label": "input_vcf_index",
+      "name": "vcf_index",
+      "label": "Input vcf index file",
       "help": "The index file of the vcf file to be filtered",
       "class": "file",
       "patterns": ["*.vcf.gz.tbi"]
     },
     {
       "name": "bedfile",
-      "label": "bedfile to filter  vcf",
+      "label": "bedfile to filter vcf",
       "help": "The bedfile you wish to use to filter the vcf file with",
       "class": "file",
       "patterns": ["*.bed"]
@@ -35,7 +35,7 @@
   "outputSpec": [
     {
       "name": "filtered_vcf",
-      "label": "filtered_vcf",
+      "label": "Output vcf",
       "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
       "class": "file",
       "patterns": ["*.vcf.gz"]
