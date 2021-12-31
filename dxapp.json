@@ -1,12 +1,12 @@
 {
-  "name": "filter_vcf_with_bedfile_v1.0",
-  "title": "filter_vcf_with_bedfile_v1.0",
-  "summary": "v1.0 - Filters a VCF file using a BED file - keeps variants overlapping/within the region of interest. Runs bcftools v1.13",
+  "name": "filter_vcf_with_bedfile_v1.1",
+  "title": "filter_vcf_with_bedfile_v1.1",
+  "summary": "v1.1 - Filters a VCF file using a BED file - keeps variants overlapping/within the region of interest. Runs bcftools v1.13",
   "tags": [
     "variants", "bed file", "filtering"
   ],
   "properties": {
-    "github release": "v1.0"
+    "github release": "v1.1"
   },
   "dxapi": "1.0.0",
   "inputSpec": [
@@ -29,7 +29,8 @@
       "label": "bedfile to filter vcf",
       "help": "The bedfile you wish to use to filter the vcf file with",
       "class": "file",
-      "patterns": ["*.bed"]
+      "patterns": ["*.bed"],
+      "optional": true
     }
   ],
   "outputSpec": [
@@ -38,7 +39,8 @@
       "label": "Output vcf",
       "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
       "class": "file",
-      "patterns": ["*.vcf.gz"]
+      "patterns": ["*.vcf.gz"],
+      "optional": true
     }
   ],
   "runSpec": {
