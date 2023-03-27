@@ -1,4 +1,4 @@
-# dnanexus_filter_vcf_with_bedfile v1.1
+# dnanexus_filter_vcf_with_bedfile
 
 [samtools/bcftools:1.13](https://github.com/samtools/bcftools/releases/tag/1.13)
 
