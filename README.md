@@ -2,6 +2,21 @@
 
 [samtools/bcftools:1.13](https://github.com/samtools/bcftools/releases/tag/1.13)
 
+## Updates
+
+### v1.2 - 15/07/2025 (George)
+
+Added enhanced filtering criteria per GATK Best Practice guidance on [Hard-filtering germline short variants](https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants). The following rules result in variant filtration:
+
+- FisherStrand (FS) > 60
+- StrandOddsRatio (SOR) > 3
+- QualByDepth (QD) < 2.0
+- RMSMappingQuality (MQ) < 40
+- ReadPosRankSumTest (ReadPosRankSum) < -8.0
+- Genotype (GT) == "het" && AF < 25% && ReadPosRankSum < -4.0
+
+Outputs additional filtered VCF for input to hap.py benchmarking tool.
+
 ## What does this app do?
 
 Uses bcftools view to filter down variants in a VCF using a bed file. Uses dockerised bcftools v1.13.
