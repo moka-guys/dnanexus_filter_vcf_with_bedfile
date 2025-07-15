@@ -1,9 +1,9 @@
 {
   "name": "filter_vcf_with_bedfile_v1.2.0",
   "title": "filter_vcf_with_bedfile_v1.2.0",
-  "summary": "v1.2.0 - Filters a VCF file using a BED file and various quality filters - keeps variants overlapping/within the region of interest. Runs bcftools v1.13",
+  "summary": "v1.2.0 - Filters a VCF file using a BED file and various quality filters - keeps variants overlapping/within the region of interest. Outputs both BED+quality filtered and quality-only filtered VCFs. Runs bcftools v1.13",
   "tags": [
-    "variants", "bed file", "filtering"
+    "variants", "bed file", "filtering", "quality filtering"
   ],
   "properties": {
     "github release": "v1.2.0"
@@ -36,10 +36,18 @@
   "outputSpec": [
     {
       "name": "filtered_vcf",
-      "label": "Output vcf",
-      "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file.",
+      "label": "BED filtered + quality filtered VCF",
+      "help": "A vcf file containing variants from vcf that fall within the regions given in the bed file and pass quality filters.",
       "class": "file",
-      "patterns": ["*.vcf.gz"],
+      "patterns": ["*.bedfiltered.vcf.gz"],
+      "optional": true
+    },
+    {
+      "name": "quality_filtered_vcf",
+      "label": "Quality filtered VCF (genome-wide)",
+      "help": "A vcf file containing variants that pass quality filters but without BED file region restriction.",
+      "class": "file",
+      "patterns": ["*.qualityfiltered.vcf.gz"],
       "optional": true
     }
   ],
@@ -50,9 +58,9 @@
       }
     },
     "file": "src/code.sh",
-    "distribution" : "Ubuntu",
+    "distribution": "Ubuntu",
     "version": "0",
-    "release" : "20.04",
+    "release": "20.04",
     "interpreter": "bash"
   },
   "access": {
