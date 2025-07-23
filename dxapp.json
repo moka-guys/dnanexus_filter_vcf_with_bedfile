@@ -41,14 +41,6 @@
       "class": "file",
       "patterns": ["*.bedfiltered.vcf.gz"],
       "optional": true
-    },
-    {
-      "name": "quality_filtered_vcf",
-      "label": "Quality filtered VCF (genome-wide)",
-      "help": "A vcf file containing variants that pass quality filters but without BED file region restriction.",
-      "class": "file",
-      "patterns": ["*.qualityfiltered.vcf.gz"],
-      "optional": true
     }
   ],
   "runSpec": {
