@@ -33,7 +33,7 @@ main () {
     docker load < /home/dnanexus/"${DOCKER_IMAGE_FILE}"
     echo "Using docker image ${DOCKER_IMAGE_NAME}"
     docker run -v /home/dnanexus:/home/dnanexus "${DOCKER_IMAGE_NAME}" view "$vcf_file_path"##idx##"$vcf_index_path" \
-        -R "$bedfile_path" -O z -o ${out_dir}/"$vcf_file_prefix".bedfiltered.vcf.gz
+        -R "$bedfile_path" -e '(TYPE="snp" && ((INFO/FS > 60) || (INFO/SOR > 3) && (INFO/AF == 0.5) || (INFO/QD < 2.0) || (INFO/MQ < 40) || (INFO/ReadPosRankSum < -8.0))) || (TYPE="indel" && ((INFO/FS > 200) || (INFO/SOR > 10) || (INFO/QD < 2.0) || (INFO/ReadPosRankSum < -20.0))) || ((GT="het") && ((AD[0:1] / FORMAT/DP) < 0.25) && (INFO/ReadPosRankSum < -4.0))' -O z -o ${out_dir}/"$vcf_file_prefix".bedfiltered.vcf.gz
 
     # Create output directory, move output file into directory, and upload outputs
     # dx-upload-all-outputs uploads contents of the subdirectories on the path $HOME/out/
