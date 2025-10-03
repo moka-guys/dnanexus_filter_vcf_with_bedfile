@@ -14,7 +14,7 @@ main () {
     # Fetch input files
     dx-download-all-inputs --parallel
     # Download docker image, get tag and print
-    DOCKER_FILE_ID=project-ByfFPz00jy1fk6PjpZ95F27J:file-G55XqF00jy1QkJ174ZzZfzV5
+    DOCKER_FILE_ID=project-J32193pK9yGfjP2GyZ94KZf4:file-J342zZBK9yGjv1019Xf6k3yk
     dx download ${DOCKER_FILE_ID}
 
     DOCKER_IMAGE_FILE=$(dx describe ${DOCKER_FILE_ID} --name)
